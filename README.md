@@ -10,3 +10,17 @@ This is a Go library that allows you to integrate BINGPAY into your Go project. 
 - On the pop up, click on the "developer api" option and you would get a form to fill which would request for two things: your website address and the reason why you need the developer API. After those have been inputed then you can submit your request which would be under review for some day(s) before you get an API token. 
 
 # Installation
+To install this bingpay package, you need to install [Go](https://golang.org/) and set your Go workspace first.
+1. You can use the below Go command to install Gin
+```sh
+$ go get -u github.com/hisyntax/bingpay-go
+```
+2. Import it in your code:
+```sh
+import "github.com/hisyntax/bingpay-go"
+```
+# Quick start
+```sh
+# assume the following codes in example.go file
+$ touch example.go
+```
