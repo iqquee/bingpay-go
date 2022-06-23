@@ -23,4 +23,5 @@ import "github.com/hisyntax/bingpay-go"
 ```sh
 # assume the following codes in example.go file
 $ touch example.go
+# open the just created example.go file in the editor of your choice
 ```
