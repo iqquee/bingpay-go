@@ -23,5 +23,20 @@ import "github.com/hisyntax/bingpay-go"
 ```sh
 # assume the following codes in example.go file
 $ touch example.go
-# open the just created example.go file in the editor of your choice
+# open the just created example.go file in the text editor of your choice
+```
+## Check Balance
+Use this to fetch your bingpay wallet balance
+
+```go
+package main
+
+import (
+	"github.com/hisyntax/bingpay-go"
+)
+```
+
+```sh
+# run example.go 
+$ go run example.go
 ```
