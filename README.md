@@ -25,8 +25,9 @@ import "github.com/hisyntax/bingpay-go"
 $ touch example.go
 # open the just created example.go file in the text editor of your choice
 ```
-## Check Balance
-Use this to fetch your bingpay wallet balance
+## Airtime
+- ### All Networks
+Use this to fetch the list of all networks supported by bingpay
 
 ```go
 package main
@@ -35,7 +36,39 @@ import (
 	"github.com/hisyntax/bingpay-go"
 )
 ```
+- ### Verify Phone Numbe
+Use this to verify customer's phone number.
+Only country ISO codes are allowed. example NG for Nigeria, US for United States of America etc.
+You can find list of all ISO codes [here](https://www.nationsonline.org/oneworld/country_code_list.htm)
 
+```go
+package main
+
+import (
+	"github.com/hisyntax/bingpay-go"
+)
+```
+- ### Buy Airtime
+Use this to perform airtime purchase.
+You get 2% discount on every airtime purchase instantly.
+
+```go
+package main
+
+import (
+	"github.com/hisyntax/bingpay-go"
+)
+```
+## Wallet 
+- ### Check Balance -
+Use this to fetch your bingpay wallet balance
+```go
+package main
+
+import (
+	"github.com/hisyntax/bingpay-go"
+)
+```
 ```sh
 # run example.go 
 $ go run example.go

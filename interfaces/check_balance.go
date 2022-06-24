@@ -7,11 +7,11 @@ import (
 	"net/http"
 )
 
-func CheckBalance(bearerToken string) {
-	client := http.Client{}
+func CheckBalance() {
+	client := NewHttpClient()
 	url := "https://bingpay.ng/api/v1/self/balance"
 	method := "GET"
-	token := fmt.Sprintf("Bearer %s", bearerToken)
+	token := client.Token
 	req, reqErr := http.NewRequest(method, url, nil)
 	if reqErr != nil {
 		log.Println(reqErr.Error())
@@ -21,7 +21,7 @@ func CheckBalance(bearerToken string) {
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("Authorization", token)
 
-	resp, respErr := client.Do(req)
+	resp, respErr := client.Http.Do(req)
 	if respErr != nil {
 		log.Println(respErr.Error())
 		return
