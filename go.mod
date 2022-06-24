@@ -1,3 +1,3 @@
-module github.com/hisyntax/bingpay
+module bingpay-go
 
 go 1.18
