@@ -10,15 +10,15 @@ type HttpClient struct {
 	Token string
 }
 
-var token string
+var Token string
 
-func Token(token string) string {
+func ApiToken(token string) string {
 	return fmt.Sprintf("Bearer %s", token)
 }
 
 func NewHttpClient() *HttpClient {
 	var ht HttpClient
-	token := Token(token)
+	token := ApiToken(Token)
 	ht.Http = http.Client{}
 	ht.Token = token
 	return &HttpClient{
