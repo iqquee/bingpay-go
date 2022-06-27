@@ -8,19 +8,19 @@ import (
 	"github.com/hisyntax/bingpay-go/interfaces"
 )
 
-type allNetworks struct {
+type allNetworksRes struct {
 	Error   bool
 	Message string
-	Data    []allNetworksDataBody
+	Data    []allNetworksResDataBody
 }
 
-type allNetworksDataBody struct {
+type allNetworksResDataBody struct {
 	ID   string
 	Name string
 	Note string
 }
 
-func AllNetworks() (*allNetworks, int, error) {
+func AllNetworks() (*allNetworksRes, int, error) {
 	client := interfaces.NewHttpClient()
 	url := "https://bingpay.ng/api/v1/all-networks"
 	method := "GET"
@@ -41,7 +41,7 @@ func AllNetworks() (*allNetworks, int, error) {
 	defer resp.Body.Close()
 
 	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var response allNetworks
+	var response allNetworksRes
 	if err := json.Unmarshal(resp_body, &response); err != nil {
 		return nil, 0, err
 	}

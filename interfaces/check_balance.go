@@ -6,18 +6,18 @@ import (
 	"net/http"
 )
 
-type checkBalance struct {
+type checkBalanceRes struct {
 	Error   bool
 	Message string
-	Data    checkBalanceDataBody
+	Data    checkBalanceResDataBody
 }
 
-type checkBalanceDataBody struct {
+type checkBalanceResDataBody struct {
 	Balance  string
 	Currency string
 }
 
-func CheckBalance() (*checkBalance, int, error) {
+func CheckBalance() (*checkBalanceRes, int, error) {
 	client := NewHttpClient()
 	url := "https://bingpay.ng/api/v1/self/balance"
 	method := "GET"
@@ -38,7 +38,7 @@ func CheckBalance() (*checkBalance, int, error) {
 	defer resp.Body.Close()
 
 	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var response checkBalance
+	var response checkBalanceRes
 	if err := json.Unmarshal(resp_body, &response); err != nil {
 		return nil, 0, err
 	}
