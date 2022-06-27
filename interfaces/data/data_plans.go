@@ -2,29 +2,16 @@ package data
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
 	"github.com/hisyntax/bingpay-go/interfaces"
 )
 
-type allDataPlans struct {
-	Error   bool
-	Message string
-	Data    []allDataPlansDataBody
-}
-
-type allDataPlansDataBody struct {
-	Id         string
-	Network_Id string
-	Name       string
-	Price      string
-	Uniq_Id    string
-}
-
-func AllDataPlans() (*allDataPlans, int, error) {
+func DataPlans(network_id int) (*allDataPlans, int, error) {
 	client := interfaces.NewHttpClient()
-	url := "https://bingpay.ng/api/v1/all-data-plans"
+	url := fmt.Sprintf("https://bingpay.ng/api/v1/data-plans/%d", network_id)
 	method := "GET"
 	token := client.Token
 
