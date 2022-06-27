@@ -35,6 +35,8 @@ func CheckBalance() (*checkBalance, int, error) {
 		return nil, 0, respErr
 	}
 
+	defer resp.Body.Close()
+
 	resp_body, _ := ioutil.ReadAll(resp.Body)
 	var response checkBalance
 	if err := json.Unmarshal(resp_body, &response); err != nil {

@@ -1,9 +1,11 @@
-package interfaces
+package airtime
 
 import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/hisyntax/bingpay-go/interfaces"
 )
 
 type allNetworks struct {
@@ -19,7 +21,7 @@ type allNetworksDataBody struct {
 }
 
 func AllNetworks() (*allNetworks, int, error) {
-	client := NewHttpClient()
+	client := interfaces.NewHttpClient()
 	url := "https://bingpay.ng/api/v1/all-networks"
 	method := "GET"
 	token := client.Token
@@ -35,6 +37,8 @@ func AllNetworks() (*allNetworks, int, error) {
 	if respErr != nil {
 		return nil, 0, respErr
 	}
+
+	defer resp.Body.Close()
 
 	resp_body, _ := ioutil.ReadAll(resp.Body)
 	var response allNetworks
