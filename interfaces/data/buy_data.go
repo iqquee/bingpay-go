@@ -1,4 +1,4 @@
-package airtime
+package data
 
 import (
 	"bytes"
@@ -9,28 +9,28 @@ import (
 	"github.com/hisyntax/bingpay-go/interfaces"
 )
 
-type buyAirtime struct {
+type buyData struct {
 	Phone   string
-	Amount  int
+	Plan    int
 	Network int
 }
 
-type buyAirtimeRes struct {
+type buyDataRes struct {
 	Error   bool
 	Message string
-	Amount  string
 }
 
-func BuyAirtime(phone string, amount, network_id int) (*buyAirtimeRes, int, error) {
+func BuyData(phone string, plan, network_id int) (*buyDataRes, int, error) {
 	client := interfaces.NewHttpClient()
-	url := "https://bingpay.ng/api/v1/buy-airtime"
+	url := "https://bingpay.ng/api/v1/buy-data"
 	method := "POST"
 	token := client.Token
 
-	payload := buyAirtime{}
+	payload := buyData{}
 	payload.Phone = phone
-	payload.Amount = amount
+	payload.Plan = plan
 	payload.Network = network_id
+
 	jsonReq, jsonErr := json.Marshal(&payload)
 	if jsonErr != nil {
 		return nil, 0, jsonErr
@@ -51,7 +51,7 @@ func BuyAirtime(phone string, amount, network_id int) (*buyAirtimeRes, int, erro
 
 	defer resp.Body.Close()
 	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var response buyAirtimeRes
+	var response buyDataRes
 	if err := json.Unmarshal(resp_body, &response); err != nil {
 		return nil, 0, err
 	}
