@@ -1,0 +1,61 @@
+package utilitybills
+
+import (
+	"bytes"
+	"encoding/json"
+	"io/ioutil"
+	"net/http"
+
+	"github.com/hisyntax/bingpay-go/interfaces"
+)
+
+type verifyCustomer struct {
+	Service_Id  string
+	Customer_Id string //customer meter number, smart card number...
+	Type        string //meter type (prepaid or postpaid) required for electricity bills only
+}
+
+type verifyCustomerRes struct {
+	Error   bool
+	Message string
+}
+
+func VerifyCustomer(service_id, customer_id, meter_type string) (*verifyCustomerRes, int, error) {
+	client := interfaces.NewHttpClient()
+	url := "https://bingpay.ng/api/v1/validate-service"
+	method := "POST"
+	token := client.Token
+
+	payload := verifyCustomer{}
+	payload.Service_Id = service_id
+	payload.Customer_Id = customer_id
+	payload.Type = meter_type
+
+	jsonReq, jsonErr := json.Marshal(&payload)
+	if jsonErr != nil {
+		return nil, 0, jsonErr
+	}
+
+	req, reqErr := http.NewRequest(method, url, bytes.NewBuffer(jsonReq))
+	if reqErr != nil {
+		return nil, 0, reqErr
+	}
+
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("Authorization", token)
+
+	resp, respErr := client.Http.Do(req)
+	if respErr != nil {
+		return nil, 0, respErr
+	}
+
+	defer resp.Body.Close()
+
+	resp_body, _ := ioutil.ReadAll(resp.Body)
+	var response verifyCustomerRes
+	if err := json.Unmarshal(resp_body, &response); err != nil {
+		return nil, 0, err
+	}
+
+	return &response, resp.StatusCode, nil
+}
