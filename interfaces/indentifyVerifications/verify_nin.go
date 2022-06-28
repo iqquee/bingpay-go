@@ -44,9 +44,9 @@ type verifyNinResDataBody struct {
 	BirthState       string
 	BirthCountry     string
 	NextOfKin        verifyNinResDataBodyNextOfKin
-	Nspokenlang      string
-	Ospokenlang      string
-	ParentLastname   string
+	NspokenLang      string
+	OspokenLang      string
+	ParentLastName   string
 	Religion         string
 	Residence        verifyNinResDataBodyResidence
 	Signature        string
