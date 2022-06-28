@@ -26,7 +26,7 @@ type resloveAccountResDataBody struct {
 	Message       string
 }
 
-func ResolveBank(bank_code, acct_num string) (*resloveAccountRes, int, error) {
+func ResolveAccount(bank_code, acct_num string) (*resloveAccountRes, int, error) {
 	client := interfaces.NewHttpClient()
 	url := "https://bingpay.ng/api/v1/resolve-account"
 	method := "POST"
