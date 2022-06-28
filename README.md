@@ -11,7 +11,7 @@ This is a Go library that allows you to integrate BINGPAY into your Go project. 
 
 # Installation
 To install this bingpay package, you need to install [Go](https://golang.org/) and set your Go workspace first.
-1. You can use the below Go command to install Gin
+1. You can use the below Go command to install BingPay
 ```sh
 $ go get -u github.com/hisyntax/bingpay-go
 ```
@@ -19,11 +19,40 @@ $ go get -u github.com/hisyntax/bingpay-go
 ```sh
 import "github.com/hisyntax/bingpay-go"
 ```
+## Note : All methods in this package returns three (3) things;
+- The object of the request
+- An int (status code) i.e  status 200 or status 400
+- An error (if any)
+
 # Quick start
 ```sh
 # assume the following codes in example.go file
 $ touch example.go
 # open the just created example.go file in the text editor of your choice
+```
+## Wallet 
+- ### Check Balance -
+Use this to fetch your bingpay wallet balance
+```go
+package main
+
+import (
+	"fmt"
+	bingpay "github.com/hisyntax/bingpay-go"
+	"github.com/hisyntax/bingpay-go/airtime"
+)
+
+func main() {
+	bingpay.Token = "your bingpay api secret key" // to add your secret key for the api requests 
+
+	response, status, err := airtime.CheckBalance()
+	if err != nil {
+		fmt.Println(err)
+	}
+	
+	fmt.Println(status)
+	fmt.Println(response)
+}
 ```
 ## Airtime
 - ### All Networks
@@ -33,10 +62,24 @@ Use this to fetch the list of all networks supported by bingpay
 package main
 
 import (
-	"github.com/hisyntax/bingpay-go"
+	"fmt"
+	bingpay "github.com/hisyntax/bingpay-go"
+	"github.com/hisyntax/bingpay-go/airtime"
 )
+
+func main() {
+	bingpay.Token = "your bingpay api secret key" // to add your secret key for the api requests 
+
+	response, status, err := airtime.AllNetworks()
+	if err != nil {
+		fmt.Println(err)
+	}
+	
+	fmt.Println(status)
+	fmt.Println(response)
+}
 ```
-- ### Verify Phone Numbe
+- ### Verify Phone Number
 Use this to verify customer's phone number.
 Only country ISO codes are allowed. example NG for Nigeria, US for United States of America etc.
 You can find list of all ISO codes [here](https://www.nationsonline.org/oneworld/country_code_list.htm)
@@ -45,8 +88,24 @@ You can find list of all ISO codes [here](https://www.nationsonline.org/oneworld
 package main
 
 import (
-	"github.com/hisyntax/bingpay-go"
+	"fmt"
+	bingpay "github.com/hisyntax/bingpay-go"
+	"github.com/hisyntax/bingpay-go/airtime"
 )
+
+func main() {
+	bingpay.Token = "your bingpay api secret key" // to add your secret key for the api requests 
+
+	country := "NG" //for nigeria
+	number := "08000000000"
+	response, status, err := airtime.VerifyPhoneNumber(country, number)
+	if err != nil {
+		fmt.Println(err)
+	}
+	
+	fmt.Println(status)
+	fmt.Println(response)
+}
 ```
 - ### Buy Airtime
 Use this to perform airtime purchase.
@@ -56,19 +115,86 @@ You get 2% discount on every airtime purchase instantly.
 package main
 
 import (
-	"github.com/hisyntax/bingpay-go"
+	"fmt"
+	bingpay "github.com/hisyntax/bingpay-go"
+	"github.com/hisyntax/bingpay-go/airtime"
 )
+
+func main() {
+	bingpay.Token = "your bingpay api secret key" // to add your secret key for the api requests 
+
+	phone := "08000000000"
+	amount := 100 //for 100 naria topup
+	network_id := 1 //for MTN
+	response, status, err := airtime.BuyAirtime(phone,amount,network_id)
+	if err != nil {
+		fmt.Println(err)
+	}
+	
+	fmt.Println(status)
+	fmt.Println(response)
+}
 ```
-## Wallet 
-- ### Check Balance -
-Use this to fetch your bingpay wallet balance
+
+## Data
+- ### All data plans
+Use this to fetch all data plans
+
 ```go
 package main
 
 import (
-	"github.com/hisyntax/bingpay-go"
+	"fmt"
+	bingpay "github.com/hisyntax/bingpay-go"
+	"github.com/hisyntax/bingpay-go/data"
 )
+
+func main() {
+	bingpay.Token = "your bingpay api secret key" // to add your secret key for the api requests 
+
+	response, status, err := airtime.AllDataPlans()
+	if err != nil {
+		fmt.Println(err)
+	}
+	
+	fmt.Println(status)
+	fmt.Println(response)
+}
 ```
+- ### Data plans
+Fetch Data plans for a specific network.
+Network id can be gotten from All networks endpoint.
+
+```go
+package main
+
+import (
+	"fmt"
+	bingpay "github.com/hisyntax/bingpay-go"
+	"github.com/hisyntax/bingpay-go/data"
+)
+
+func main() {
+	bingpay.Token = "your bingpay api secret key" // to add your secret key for the api requests 
+
+	/* network ID's
+			MTN = 1
+			Airtel = 2
+			9mobile = 3
+			Glo = 4
+	*/
+
+	network_id := 1 //for MTN
+	response, status, err := airtime.DataPlans(1)
+	if err != nil {
+		fmt.Println(err)
+	}
+	
+	fmt.Println(status)
+	fmt.Println(response)
+}
+```
+
 ```sh
 # run example.go 
 $ go run example.go
