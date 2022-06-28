@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go/interfaces"
+	"github.com/hisyntax/bingpay-go"
 )
 
 type verifyBvn struct {
@@ -41,7 +41,7 @@ type verifyBvnResDataBodyFieldMatches struct {
 }
 
 func VerifyBvn(firstName, lastName, phone, bvn string) (*verifyBvnRes, int, error) {
-	client := interfaces.NewHttpClient()
+	client := bingpay.NewClient()
 	url := "https://bingpay.ng/api/v1/verify/bvn"
 	method := "POST"
 	token := client.Token

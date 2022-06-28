@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go/interfaces"
+	"github.com/hisyntax/bingpay-go"
 )
 
 type networkFee struct {
@@ -28,7 +28,7 @@ type networkFeeDataBody struct {
 }
 
 func NetworkFee(amount, network_id int) (*networkFeeRes, int, error) {
-	client := interfaces.NewHttpClient()
+	client := bingpay.NewClient()
 	url := "https://bingpay.ng/api/v1/airtime-cash/fee"
 	method := "POST"
 	token := client.Token

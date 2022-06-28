@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go/interfaces"
+	"github.com/hisyntax/bingpay-go"
 )
 
 type allNetworksRes struct {
@@ -21,7 +21,7 @@ type allNetworksResDataBody struct {
 }
 
 func AllNetworks() (*allNetworksRes, int, error) {
-	client := interfaces.NewHttpClient()
+	client := bingpay.NewClient()
 	url := "https://bingpay.ng/api/v1/all-networks"
 	method := "GET"
 	token := client.Token

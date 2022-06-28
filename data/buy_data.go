@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go/interfaces"
+	"github.com/hisyntax/bingpay-go"
 )
 
 type buyData struct {
@@ -21,7 +21,7 @@ type buyDataRes struct {
 }
 
 func BuyData(phone string, plan, network_id int) (*buyDataRes, int, error) {
-	client := interfaces.NewHttpClient()
+	client := bingpay.NewClient()
 	url := "https://bingpay.ng/api/v1/buy-data"
 	method := "POST"
 	token := client.Token

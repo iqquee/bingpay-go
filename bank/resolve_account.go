@@ -1,4 +1,4 @@
-package airtime
+package bank
 
 import (
 	"bytes"
@@ -6,36 +6,36 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go/interfaces"
+	"github.com/hisyntax/bingpay-go"
 )
 
-type verifyPhoneNum struct {
-	Country string
-	Phone   string
+type resloveAccount struct {
+	Bank_Code      string
+	Account_Number string
 }
 
-type verifyPhoneNumRes struct {
-	Error   bool
-	Message string
-	Data    []verifyPhoneNumResDataBody
+type resloveAccountRes struct {
+	Error bool
+	Data  resloveAccountResDataBody
+}
+type resloveAccountResDataBody struct {
+	AccountName   string
+	AccountNumber string
+	BankCode      string
+	ResponseCode  string
+	Message       string
 }
 
-type verifyPhoneNumResDataBody struct {
-	Mobile  string
-	Country string
-	Name    string
-	Status  string
-}
-
-func VerifyPhoneNumber(country, number string) (*verifyPhoneNumRes, int, error) {
-	client := interfaces.NewHttpClient()
-	url := "https://bingpay.ng/api/v1/verify/phone"
+func ResolveAccount(bank_code, acct_num string) (*resloveAccountRes, int, error) {
+	client := bingpay.NewClient()
+	url := "https://bingpay.ng/api/v1/resolve-account"
 	method := "POST"
 	token := client.Token
 
-	payload := verifyPhoneNum{}
-	payload.Country = country //NG for nigeria
-	payload.Phone = number
+	payload := resloveAccount{}
+	payload.Bank_Code = bank_code
+	payload.Account_Number = acct_num
+
 	jsonReq, jsonErr := json.Marshal(&payload)
 	if jsonErr != nil {
 		return nil, 0, jsonErr
@@ -57,9 +57,10 @@ func VerifyPhoneNumber(country, number string) (*verifyPhoneNumRes, int, error) 
 	defer resp.Body.Close()
 
 	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var response verifyPhoneNumRes
+	var response resloveAccountRes
 	if err := json.Unmarshal(resp_body, &response); err != nil {
 		return nil, 0, err
 	}
+
 	return &response, resp.StatusCode, nil
 }

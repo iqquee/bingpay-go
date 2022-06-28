@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go/interfaces"
+	"github.com/hisyntax/bingpay-go"
 )
 
 type verifyCustomer struct {
@@ -21,7 +21,7 @@ type verifyCustomerRes struct {
 }
 
 func VerifyCustomer(service_id, customer_id, meter_type string) (*verifyCustomerRes, int, error) {
-	client := interfaces.NewHttpClient()
+	client := bingpay.NewClient()
 	url := "https://bingpay.ng/api/v1/validate-service"
 	method := "POST"
 	token := client.Token

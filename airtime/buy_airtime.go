@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go/interfaces"
+	"github.com/hisyntax/bingpay-go"
 )
 
 type buyAirtime struct {
@@ -22,7 +22,7 @@ type buyAirtimeRes struct {
 }
 
 func BuyAirtime(phone string, amount, network_id int) (*buyAirtimeRes, int, error) {
-	client := interfaces.NewHttpClient()
+	client := bingpay.NewClient()
 	url := "https://bingpay.ng/api/v1/buy-airtime"
 	method := "POST"
 	token := client.Token

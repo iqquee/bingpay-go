@@ -1,4 +1,4 @@
-package bank
+package airtimetocash
 
 import (
 	"bytes"
@@ -6,35 +6,37 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go/interfaces"
+	"github.com/hisyntax/bingpay-go"
 )
 
-type resloveAccount struct {
-	Bank_Code      string
-	Account_Number string
+type airtimeToCash struct {
+	Amount  int
+	Network int
+	Phone   string
 }
 
-type resloveAccountRes struct {
-	Error bool
-	Data  resloveAccountResDataBody
-}
-type resloveAccountResDataBody struct {
-	AccountName   string
-	AccountNumber string
-	BankCode      string
-	ResponseCode  string
-	Message       string
+type airtimeToCashRes struct {
+	Error   bool
+	Message string
+	Data    airtimeToCashResDataBody
 }
 
-func ResolveAccount(bank_code, acct_num string) (*resloveAccountRes, int, error) {
-	client := interfaces.NewHttpClient()
-	url := "https://bingpay.ng/api/v1/resolve-account"
+type airtimeToCashResDataBody struct {
+	Amount    string
+	Value     int
+	Reference int
+}
+
+func AirtimeToCash(amount, network_id int, phone string) (*airtimeToCashRes, int, error) {
+	client := bingpay.NewClient()
+	url := "https://bingpay.ng/api/v1/airtime-cash/process"
 	method := "POST"
 	token := client.Token
 
-	payload := resloveAccount{}
-	payload.Bank_Code = bank_code
-	payload.Account_Number = acct_num
+	payload := airtimeToCash{}
+	payload.Amount = amount
+	payload.Network = network_id
+	payload.Phone = phone
 
 	jsonReq, jsonErr := json.Marshal(&payload)
 	if jsonErr != nil {
@@ -57,7 +59,7 @@ func ResolveAccount(bank_code, acct_num string) (*resloveAccountRes, int, error)
 	defer resp.Body.Close()
 
 	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var response resloveAccountRes
+	var response airtimeToCashRes
 	if err := json.Unmarshal(resp_body, &response); err != nil {
 		return nil, 0, err
 	}

@@ -2,28 +2,36 @@ package utilitybills
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go/interfaces"
+	"github.com/hisyntax/bingpay-go"
 )
 
-type allServicesRes struct {
+type serviceVariationRes struct {
 	Error   bool
 	Message string
-	Data    []allServicesResDataBody
+	Data    serviceVariationDataBody
 }
 
-type allServicesResDataBody struct {
-	Id          string
-	Name        string
-	Image_Url   string
-	Description string
+type serviceVariationDataBody struct {
+	ServiceName     string
+	ServiceId       string
+	Convinience_Fee string
+	Variations      []variationsDataBody
 }
 
-func AllServices() (*allServicesRes, int, error) {
-	client := interfaces.NewHttpClient()
-	url := "https://bingpay.ng/api/v1/all-services"
+type variationsDataBody struct {
+	Variation_Code   string
+	Name             string
+	Variation_Amount string
+	FixedPrice       string
+}
+
+func ServiceVariation(service_id int) (*serviceVariationRes, int, error) {
+	client := bingpay.NewClient()
+	url := fmt.Sprintf("https://bingpay.ng/api/v1/service/%d", service_id)
 	method := "GET"
 	token := client.Token
 
@@ -43,7 +51,7 @@ func AllServices() (*allServicesRes, int, error) {
 	defer resp.Body.Close()
 
 	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var response allServicesRes
+	var response serviceVariationRes
 	if err := json.Unmarshal(resp_body, &response); err != nil {
 		return nil, 0, err
 	}

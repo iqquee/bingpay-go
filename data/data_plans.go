@@ -6,11 +6,11 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go/interfaces"
+	"github.com/hisyntax/bingpay-go"
 )
 
 func DataPlans(network_id int) (*allDataPlans, int, error) {
-	client := interfaces.NewHttpClient()
+	client := bingpay.NewClient()
 	url := fmt.Sprintf("https://bingpay.ng/api/v1/data-plans/%d", network_id)
 	method := "GET"
 	token := client.Token

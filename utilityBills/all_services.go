@@ -1,27 +1,32 @@
-package interfaces
+package utilitybills
 
 import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/hisyntax/bingpay-go"
 )
 
-type checkBalanceRes struct {
+type allServicesRes struct {
 	Error   bool
 	Message string
-	Data    checkBalanceResDataBody
+	Data    []allServicesResDataBody
 }
 
-type checkBalanceResDataBody struct {
-	Balance  string
-	Currency string
+type allServicesResDataBody struct {
+	Id          string
+	Name        string
+	Image_Url   string
+	Description string
 }
 
-func CheckBalance() (*checkBalanceRes, int, error) {
-	client := NewHttpClient()
-	url := "https://bingpay.ng/api/v1/self/balance"
+func AllServices() (*allServicesRes, int, error) {
+	client := bingpay.NewClient()
+	url := "https://bingpay.ng/api/v1/all-services"
 	method := "GET"
 	token := client.Token
+
 	req, reqErr := http.NewRequest(method, url, nil)
 	if reqErr != nil {
 		return nil, 0, reqErr
@@ -38,7 +43,7 @@ func CheckBalance() (*checkBalanceRes, int, error) {
 	defer resp.Body.Close()
 
 	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var response checkBalanceRes
+	var response allServicesRes
 	if err := json.Unmarshal(resp_body, &response); err != nil {
 		return nil, 0, err
 	}

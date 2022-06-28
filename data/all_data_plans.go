@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go/interfaces"
+	"github.com/hisyntax/bingpay-go"
 )
 
 type allDataPlans struct {
@@ -23,7 +23,7 @@ type allDataPlansDataBody struct {
 }
 
 func AllDataPlans() (*allDataPlans, int, error) {
-	client := interfaces.NewHttpClient()
+	client := bingpay.NewClient()
 	url := "https://bingpay.ng/api/v1/all-data-plans"
 	method := "GET"
 	token := client.Token

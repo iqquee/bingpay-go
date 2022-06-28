@@ -1,4 +1,4 @@
-package airtimetocash
+package airtime
 
 import (
 	"bytes"
@@ -6,38 +6,36 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go/interfaces"
+	"github.com/hisyntax/bingpay-go"
 )
 
-type airtimeToCash struct {
-	Amount  int
-	Network int
+type verifyPhoneNum struct {
+	Country string
 	Phone   string
 }
 
-type airtimeToCashRes struct {
+type verifyPhoneNumRes struct {
 	Error   bool
 	Message string
-	Data    airtimeToCashResDataBody
+	Data    []verifyPhoneNumResDataBody
 }
 
-type airtimeToCashResDataBody struct {
-	Amount    string
-	Value     int
-	Reference int
+type verifyPhoneNumResDataBody struct {
+	Mobile  string
+	Country string
+	Name    string
+	Status  string
 }
 
-func AirtimeToCash(amount, network_id int, phone string) (*airtimeToCashRes, int, error) {
-	client := interfaces.NewHttpClient()
-	url := "https://bingpay.ng/api/v1/airtime-cash/process"
+func VerifyPhoneNumber(country, number string) (*verifyPhoneNumRes, int, error) {
+	client := bingpay.NewClient()
+	url := "https://bingpay.ng/api/v1/verify/phone"
 	method := "POST"
 	token := client.Token
 
-	payload := airtimeToCash{}
-	payload.Amount = amount
-	payload.Network = network_id
-	payload.Phone = phone
-
+	payload := verifyPhoneNum{}
+	payload.Country = country //NG for nigeria
+	payload.Phone = number
 	jsonReq, jsonErr := json.Marshal(&payload)
 	if jsonErr != nil {
 		return nil, 0, jsonErr
@@ -59,10 +57,9 @@ func AirtimeToCash(amount, network_id int, phone string) (*airtimeToCashRes, int
 	defer resp.Body.Close()
 
 	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var response airtimeToCashRes
+	var response verifyPhoneNumRes
 	if err := json.Unmarshal(resp_body, &response); err != nil {
 		return nil, 0, err
 	}
-
 	return &response, resp.StatusCode, nil
 }
