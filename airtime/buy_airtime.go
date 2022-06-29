@@ -3,6 +3,7 @@ package airtime
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -23,7 +24,7 @@ type buyAirtimeRes struct {
 
 func BuyAirtime(phone string, amount, network_id int) (*buyAirtimeRes, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/buy-airtime"
+	url := fmt.Sprintf("%s/buy-airtime", client.BaseUrl)
 	method := "POST"
 	token := client.Token
 

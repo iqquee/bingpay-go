@@ -3,6 +3,7 @@ package utilitybills
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -40,7 +41,7 @@ type purchaseBillResDataBody struct {
 
 func PurchaseBill(service_Id, customer_Id, variation, amount string) (*purchaseBillRes, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/purchase-bill"
+	url := fmt.Sprintf("%s/purchase-bill", client.BaseUrl)
 	method := "POST"
 	token := client.Token
 

@@ -11,7 +11,7 @@ import (
 
 func DataPlans(network_id int) (*allDataPlans, int, error) {
 	client := bingpay.NewClient()
-	url := fmt.Sprintf("https://bingpay.ng/api/v1/data-plans/%d", network_id)
+	url := fmt.Sprintf("%s/data-plans/%d", client.BaseUrl, network_id)
 	method := "GET"
 	token := client.Token
 

@@ -3,6 +3,7 @@ package airtime
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -29,7 +30,7 @@ type verifyPhoneNumResDataBody struct {
 
 func VerifyPhoneNumber(country, number string) (*verifyPhoneNumRes, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/verify/phone"
+	url := fmt.Sprintf("%s/verify/phone", client.BaseUrl)
 	method := "POST"
 	token := client.Token
 

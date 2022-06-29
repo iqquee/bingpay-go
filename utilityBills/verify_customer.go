@@ -3,6 +3,7 @@ package utilitybills
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -22,7 +23,7 @@ type verifyCustomerRes struct {
 
 func VerifyCustomer(service_id, customer_id, meter_type string) (*verifyCustomerRes, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/validate-service"
+	url := fmt.Sprintf("%s/validate-service", client.BaseUrl)
 	method := "POST"
 	token := client.Token
 

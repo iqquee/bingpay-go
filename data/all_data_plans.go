@@ -2,6 +2,7 @@ package data
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -24,7 +25,7 @@ type allDataPlansDataBody struct {
 
 func AllDataPlans() (*allDataPlans, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/all-data-plans"
+	url := fmt.Sprintf("%s/all-data-plans", client.BaseUrl)
 	method := "GET"
 	token := client.Token
 

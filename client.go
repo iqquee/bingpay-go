@@ -6,8 +6,9 @@ import (
 )
 
 type Client struct {
-	Http  http.Client
-	Token string
+	Http    http.Client
+	Token   string
+	BaseUrl string
 }
 
 var Token string
@@ -17,12 +18,14 @@ func ApiToken(token string) string {
 }
 
 func NewClient() *Client {
-	var ht Client
+	var cl Client
 	token := ApiToken(Token)
-	ht.Http = http.Client{}
-	ht.Token = token
+	cl.Http = http.Client{}
+	cl.Token = token
+	cl.BaseUrl = "https://bingpay.ng/api/v1"
 	return &Client{
-		Http:  ht.Http,
-		Token: ht.Token,
+		Http:    cl.Http,
+		Token:   cl.Token,
+		BaseUrl: cl.BaseUrl,
 	}
 }

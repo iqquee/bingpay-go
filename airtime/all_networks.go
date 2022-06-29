@@ -2,6 +2,7 @@ package airtime
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -22,7 +23,7 @@ type allNetworksResDataBody struct {
 
 func AllNetworks() (*allNetworksRes, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/all-networks"
+	url := fmt.Sprintf("%s/all-networks", client.BaseUrl)
 	method := "GET"
 	token := client.Token
 	req, reqErr := http.NewRequest(method, url, nil)

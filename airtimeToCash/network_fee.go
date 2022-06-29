@@ -3,6 +3,7 @@ package airtimetocash
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -29,7 +30,7 @@ type networkFeeDataBody struct {
 
 func NetworkFee(amount, network_id int) (*networkFeeRes, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/airtime-cash/fee"
+	url := fmt.Sprintf("%s/airtime-cash/fee", client.BaseUrl)
 	method := "POST"
 	token := client.Token
 

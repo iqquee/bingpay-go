@@ -31,7 +31,7 @@ type variationsDataBody struct {
 
 func ServiceVariation(service_id int) (*serviceVariationRes, int, error) {
 	client := bingpay.NewClient()
-	url := fmt.Sprintf("https://bingpay.ng/api/v1/service/%d", service_id)
+	url := fmt.Sprintf("%s/service/%d", client.BaseUrl, service_id)
 	method := "GET"
 	token := client.Token
 

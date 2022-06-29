@@ -3,6 +3,7 @@ package indentifyverifications
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -42,7 +43,7 @@ type verifyBvnResDataBodyFieldMatches struct {
 
 func VerifyBvn(firstName, lastName, phone, bvn string) (*verifyBvnRes, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/verify/bvn"
+	url := fmt.Sprintf("%s/verify/bvn", client.BaseUrl)
 	method := "POST"
 	token := client.Token
 

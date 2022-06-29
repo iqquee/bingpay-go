@@ -19,8 +19,8 @@ $ go get -u github.com/hisyntax/bingpay-go
 ```sh
 import "github.com/hisyntax/bingpay-go"
 ```
-## Note : All methods in this package returns three (3) things;
-- The object of the request
+## Note : All methods in this package returns three (3) things:
+- The object of the response
 - An int (status code) i.e  status 200 or status 400
 - An error (if any)
 
@@ -31,7 +31,7 @@ $ touch example.go
 # open the just created example.go file in the text editor of your choice
 ```
 ## Wallet 
-- ### Check Balance -
+- ### Check Balance
 Use this to fetch your bingpay wallet balance
 ```go
 package main
@@ -39,13 +39,13 @@ package main
 import (
 	"fmt"
 	bingpay "github.com/hisyntax/bingpay-go"
-	"github.com/hisyntax/bingpay-go/airtime"
+	"github.com/hisyntax/bingpay-go/bingpayBal"
 )
 
 func main() {
 	bingpay.Token = "your bingpay api secret key" // to add your secret key for the api requests 
 
-	response, status, err := airtime.CheckBalance()
+	response, status, err := bingpayBal.CheckBalance()
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -152,7 +152,7 @@ import (
 func main() {
 	bingpay.Token = "your bingpay api secret key" // to add your secret key for the api requests 
 
-	response, status, err := airtime.AllDataPlans()
+	response, status, err := data.AllDataPlans()
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -185,7 +185,41 @@ func main() {
 	*/
 
 	network_id := 1 //for MTN
-	response, status, err := airtime.DataPlans(1)
+	response, status, err := data.DataPlans(network_id)
+	if err != nil {
+		fmt.Println(err)
+	}
+	
+	fmt.Println(status)
+	fmt.Println(response)
+}
+```
+- ### Buy Data
+Use this to perform a data purchase.
+You get 2% discount on every data purchase instantly.
+
+```go
+package main
+
+import (
+	"fmt"
+	bingpay "github.com/hisyntax/bingpay-go"
+	"github.com/hisyntax/bingpay-go/data"
+)
+
+func main() {
+	bingpay.Token = "your bingpay api secret key" // to add your secret key for the api requests 
+
+	/* network ID's
+			MTN = 1
+			Airtel = 2
+			9mobile = 3
+			Glo = 4
+	*/
+	phone := "08000000000"
+	plan := 
+	network_id := 1 //for MTN
+	response, status, err := data.BuyData(1)
 	if err != nil {
 		fmt.Println(err)
 	}

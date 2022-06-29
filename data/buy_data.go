@@ -3,6 +3,7 @@ package data
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -22,7 +23,7 @@ type buyDataRes struct {
 
 func BuyData(phone string, plan, network_id int) (*buyDataRes, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/buy-data"
+	url := fmt.Sprintf("%s/buy-data", client.BaseUrl)
 	method := "POST"
 	token := client.Token
 

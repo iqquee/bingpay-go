@@ -3,6 +3,7 @@ package bank
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -28,7 +29,7 @@ type resloveAccountResDataBody struct {
 
 func ResolveAccount(bank_code, acct_num string) (*resloveAccountRes, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/resolve-account"
+	url := fmt.Sprintf("%s/resolve-account", client.BaseUrl)
 	method := "POST"
 	token := client.Token
 

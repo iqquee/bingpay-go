@@ -2,6 +2,7 @@ package utilitybills
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -23,7 +24,7 @@ type allServicesResDataBody struct {
 
 func AllServices() (*allServicesRes, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/all-services"
+	url := fmt.Sprintf("%s/all-services", client.BaseUrl)
 	method := "GET"
 	token := client.Token
 

@@ -3,6 +3,7 @@ package indentifyverifications
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -79,7 +80,7 @@ type verifyNinResDataBodyFieldMatches struct {
 
 func VerifyNin(firstName, lastName, phone, nin string) (*verifyNinRes, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/verify/nin"
+	url := fmt.Sprintf("%s/verify/nin", client.BaseUrl)
 	method := "POST"
 	token := client.Token
 

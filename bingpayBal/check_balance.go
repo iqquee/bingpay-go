@@ -2,6 +2,7 @@ package bingpayBal
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -21,7 +22,7 @@ type checkBalanceResDataBody struct {
 
 func CheckBalance() (*checkBalanceRes, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/self/balance"
+	url := fmt.Sprintf("%s/self/balance", client.BaseUrl)
 	method := "GET"
 	token := client.Token
 	req, reqErr := http.NewRequest(method, url, nil)

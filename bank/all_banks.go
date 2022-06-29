@@ -2,6 +2,7 @@ package bank
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -33,7 +34,7 @@ type allBanksResDataBody struct {
 
 func AllBanks() (*allBanksRes, int, error) {
 	client := bingpay.NewClient()
-	url := "https://bingpay.ng/api/v1/all-banks"
+	url := fmt.Sprintf("%s/all-banks", client.BaseUrl)
 	method := "POST"
 	token := client.Token
 	req, reqErr := http.NewRequest(method, url, nil)
