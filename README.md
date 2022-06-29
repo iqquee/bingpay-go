@@ -20,9 +20,9 @@ $ go get -u github.com/hisyntax/bingpay-go
 import "github.com/hisyntax/bingpay-go"
 ```
 ## Note : All methods in this package returns three (3) things:
-- The object of the response
-- An int (status code) i.e  status 200 or status 400
-- An error (if any)
+- [x] The object of the response
+- [x] An int (status code) i.e  status 200 or status 400
+- [x] An error (if any)
 
 # Quick start
 ```sh
