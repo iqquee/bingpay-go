@@ -1,6 +1,7 @@
 # Bingpay-go
 Bingpay-go is a Go library that allows you to integrate BINGPAY into your Go project. Bingpay is a FinTech company which allows for Cheap Airtime &amp; Data Topup, Send &amp; Recieve Cash, Pay Utility Bills, Purchase Giftcards, Trade Airtime, Paypal &amp; Giftcards and International Topup.
-
+# Please ensure to create issues in this repo if :
+- You encounter any error while using this package and that issue would be attended to immediately.
 # Get Started
 - In other to use this package, you need to first create an account with bingpay via https://bingpay.ng/register
 - After your account have been successfully created, you would need an API Token which is used to authorize users to use the bingpay api.
