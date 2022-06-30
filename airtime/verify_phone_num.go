@@ -11,21 +11,21 @@ import (
 )
 
 type verifyPhoneNum struct {
-	Country string
-	Phone   string
+	Country string `json:"country"`
+	Phone   string `json:"phone"`
 }
 
 type verifyPhoneNumRes struct {
-	Error   bool
-	Message string
-	Data    []verifyPhoneNumResDataBody
+	Error   bool                        `json:"error"`
+	Message string                      `json:"message"`
+	Data    []verifyPhoneNumResDataBody `json:"data"`
 }
 
 type verifyPhoneNumResDataBody struct {
-	Mobile  string
-	Country string
-	Name    string
-	Status  string
+	Mobile  string `json:"mobile"`
+	Country string `json:"country"`
+	Name    string `json:"name"`
+	Status  string `json:"status"`
 }
 
 func VerifyPhoneNumber(country, number string) (*verifyPhoneNumRes, int, error) {

@@ -9,7 +9,7 @@ import (
 	"github.com/hisyntax/bingpay-go"
 )
 
-func DataPlans(network_id int) (*allDataPlans, int, error) {
+func DataPlans(network_id int) (*allDataPlansRes, int, error) {
 	client := bingpay.NewClient()
 	url := fmt.Sprintf("%s/data-plans/%d", client.BaseUrl, network_id)
 	method := "GET"
@@ -31,7 +31,7 @@ func DataPlans(network_id int) (*allDataPlans, int, error) {
 	defer resp.Body.Close()
 
 	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var response allDataPlans
+	var response allDataPlansRes
 	if err := json.Unmarshal(resp_body, &response); err != nil {
 		return nil, 0, err
 	}

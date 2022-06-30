@@ -9,21 +9,21 @@ import (
 	"github.com/hisyntax/bingpay-go"
 )
 
-type allDataPlans struct {
-	Error   bool
-	Message string
-	Data    []allDataPlansDataBody
+type allDataPlansRes struct {
+	Error   bool                      `json:"error"`
+	Message string                    `json:"message"`
+	Data    []allDataPlansResDataBody `json:"data"`
 }
 
-type allDataPlansDataBody struct {
-	Id         string
-	Network_Id string
-	Name       string
-	Price      string
-	Uniq_Id    string
+type allDataPlansResDataBody struct {
+	Id         string `json:"id"`
+	Network_Id string `json:"network_id"`
+	Name       string `json:"name"`
+	Price      string `json:"price"`
+	Uniq_Id    string `json:"unique_id"`
 }
 
-func AllDataPlans() (*allDataPlans, int, error) {
+func AllDataPlans() (*allDataPlansRes, int, error) {
 	client := bingpay.NewClient()
 	url := fmt.Sprintf("%s/all-data-plans", client.BaseUrl)
 	method := "GET"
@@ -45,7 +45,7 @@ func AllDataPlans() (*allDataPlans, int, error) {
 	defer resp.Body.Close()
 
 	resp_body, _ := ioutil.ReadAll(resp.Body)
-	var response allDataPlans
+	var response allDataPlansRes
 	if err := json.Unmarshal(resp_body, &response); err != nil {
 		return nil, 0, err
 	}

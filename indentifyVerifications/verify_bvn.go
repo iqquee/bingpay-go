@@ -11,34 +11,34 @@ import (
 )
 
 type verifyBvn struct {
-	FirstName string
-	LastName  string
-	Phone     string
-	Bvn       string
+	FirstName string `json:"firstname"`
+	LastName  string `json:"lastname"`
+	Phone     string `json:"phone"`
+	Bvn       string `json:"bvn"`
 }
 
 type verifyBvnRes struct {
-	Error   bool
-	Message string
-	Data    verifyBvnResDataBody
+	Error   bool                 `json:"error"`
+	Message string               `json:"message"`
+	Data    verifyBvnResDataBody `json:"data"`
 }
 
 type verifyBvnResDataBody struct {
-	Bvn          string
-	FirstName    string
-	LastName     string
-	MiddleName   string
-	Phone        string
-	BirthDate    string
-	Gender       string
-	Nationality  string
-	Photo        string
-	FieldMatches verifyBvnResDataBodyFieldMatches
+	Bvn          string                           `json:"bvn"`
+	FirstName    string                           `json:"first_name"`
+	LastName     string                           `json:"last_name"`
+	MiddleName   string                           `json:"middle_name"`
+	Phone        string                           `json:"phone"`
+	BirthDate    string                           `json:"birth_date"`
+	Gender       string                           `json:"gender"`
+	Nationality  string                           `json:"nationaliy"`
+	Photo        string                           `json:"photo"`
+	FieldMatches verifyBvnResDataBodyFieldMatches `json:"field_matches"`
 }
 
 type verifyBvnResDataBodyFieldMatches struct {
-	LastName  bool
-	FirstName bool
+	LastName  bool `json:"last_name"`
+	FirstName bool `json:"first_name"`
 }
 
 func VerifyBvn(firstName, lastName, phone, bvn string) (*verifyBvnRes, int, error) {

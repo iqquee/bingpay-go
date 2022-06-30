@@ -11,14 +11,14 @@ import (
 )
 
 type verifyCustomer struct {
-	Service_Id  string
-	Customer_Id string //customer meter number, smart card number...
-	Type        string //meter type (prepaid or postpaid) required for electricity bills only
+	Service_Id  string `json:"service_id"`
+	Customer_Id string `json:"customer_id"` //customer meter number, smart card number...
+	Type        string `json:"type"`        //meter type (prepaid or postpaid) required for electricity bills only
 }
 
 type verifyCustomerRes struct {
-	Error   bool
-	Message string
+	Error   bool   `json:"error"`
+	Message string `json:"message"`
 }
 
 func VerifyCustomer(service_id, customer_id, meter_type string) (*verifyCustomerRes, int, error) {

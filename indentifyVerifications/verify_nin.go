@@ -11,71 +11,71 @@ import (
 )
 
 type verifyNin struct {
-	FirstName string
-	LastName  string
-	Phone     string
-	Nin       string
+	FirstName string `json:"firstname"`
+	LastName  string `json:"lastname"`
+	Phone     string `json:"phone"`
+	Nin       string `json:"nin"`
 }
 
 type verifyNinRes struct {
-	Error   bool
-	Message string
-	Data    verifyNinResDataBody
+	Error   bool                 `json:"error"`
+	Message string               `json:"message"`
+	Data    verifyNinResDataBody `json:"data"`
 }
 
 type verifyNinResDataBody struct {
-	Nin              string
-	Title            string
-	FirstName        string
-	LastName         string
-	MiddleName       string
-	Phone            string
-	BirthDate        string
-	Nationality      string
-	Gender           string
-	Profession       string
-	StateOfOrigin    string
-	LgaOfOrigin      string
-	PlaceOfOrigin    string
-	Photo            string
-	MaritalStatus    string
-	Height           string
-	Email            string
-	EmploymentStatus string
-	BirthState       string
-	BirthCountry     string
-	NextOfKin        verifyNinResDataBodyNextOfKin
-	NspokenLang      string
-	OspokenLang      string
-	ParentLastName   string
-	Religion         string
-	Residence        verifyNinResDataBodyResidence
-	Signature        string
-	FieldMatches     verifyNinResDataBodyFieldMatches
+	Nin              string                           `json:"nin"`
+	Title            string                           `json:"title"`
+	FirstName        string                           `json:"first_name"`
+	LastName         string                           `json:"last_name"`
+	MiddleName       string                           `json:"middle_name"`
+	Phone            string                           `json:"phone"`
+	BirthDate        string                           `json:"birth_date"`
+	Nationality      string                           `json:"nationality"`
+	Gender           string                           `json:"gender"`
+	Profession       string                           `json:"profession"`
+	StateOfOrigin    string                           `json:"state_of_origin"`
+	LgaOfOrigin      string                           `json:"lga_of_origin"`
+	PlaceOfOrigin    string                           `json:"place_of_origin"`
+	Photo            string                           `json:"photo"`
+	MaritalStatus    string                           `json:"marital_status"`
+	Height           string                           `json:"height"`
+	Email            string                           `json:"email"`
+	EmploymentStatus string                           `json:"employment_status"`
+	BirthState       string                           `json:"birth_state"`
+	BirthCountry     string                           `json:"birth_country"`
+	NextOfKin        verifyNinResDataBodyNextOfKin    `json:"next_of_kin"`
+	NspokenLang      string                           `json:"n_spoken_lang"`
+	OspokenLang      string                           `json:"o_spoken_lang"`
+	ParentLastName   string                           `json:"parent_last_name"`
+	Religion         string                           `json:"religion"`
+	Residence        verifyNinResDataBodyResidence    `json:"residence"`
+	Signature        string                           `json:"signature"`
+	FieldMatches     verifyNinResDataBodyFieldMatches `json:"field_matches"`
 }
 type verifyNinResDataBodyNextOfKin struct {
-	FirstName  string
-	LastName   string
-	MiddleName string
-	Address1   string
-	Address2   string
-	Lga        string
-	State      string
-	Town       string
+	FirstName  string `json:"first_name"`
+	LastName   string `json:"last_name"`
+	MiddleName string `json:"middle_name"`
+	Address1   string `json:"address1"`
+	Address2   string `json:"address2"`
+	Lga        string `json:"lga"`
+	State      string `json:"state"`
+	Town       string `json:"town"`
 }
 
 type verifyNinResDataBodyResidence struct {
-	Address1 string
-	Address2 string
-	Town     string
-	Lga      string
-	State    string
-	Status   string
+	Address1 string `json:"address1"`
+	Address2 string `json:"address2"`
+	Town     string `json:"town"`
+	Lga      string `json:"lga"`
+	State    string `json:"state"`
+	Status   string `json:"status"`
 }
 
 type verifyNinResDataBodyFieldMatches struct {
-	LastName  bool
-	FirstName bool
+	LastName  bool `json:"last_name"`
+	FirstName bool `json:"first_name"`
 }
 
 func VerifyNin(firstName, lastName, phone, nin string) (*verifyNinRes, int, error) {

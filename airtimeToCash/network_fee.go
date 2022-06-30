@@ -11,21 +11,21 @@ import (
 )
 
 type networkFee struct {
-	Amount  int
-	Network int
+	Amount  int `json:"amount"`
+	Network int `json:"network"`
 }
 
 type networkFeeRes struct {
-	Error   bool
-	Message string
-	Data    networkFeeDataBody
+	Error   bool               `json:"error"`
+	Message string             `json:"message"`
+	Data    networkFeeDataBody `json:"data"`
 }
 
 type networkFeeDataBody struct {
-	Mobile string
-	Amount string
-	Value  int
-	Charge int
+	Mobile string `json:"mobile"`
+	Amount string `json:"amount"`
+	Value  int    `json:"value"`
+	Charge int    `json:"charge"`
 }
 
 func NetworkFee(amount, network_id int) (*networkFeeRes, int, error) {

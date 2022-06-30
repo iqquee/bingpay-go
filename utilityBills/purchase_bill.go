@@ -11,32 +11,32 @@ import (
 )
 
 type purchaseBill struct {
-	Service_Id  string
-	Customer_Id string
-	Variation   string
-	Amount      string
+	Service_Id  string `json:"service_id"`
+	Customer_Id string `json:"customer_id"`
+	Variation   string `json:"variation"`
+	Amount      string `json:"amount"`
 }
 
 type purchaseBillRes struct {
-	Error          bool
-	Message        string
-	Data           purchaseBillResDataBody
-	Purchased_Code interface{}
+	Error          bool                    `json:"error"`
+	Message        string                  `json:"message"`
+	Data           purchaseBillResDataBody `json:"data"`
+	Purchased_Code interface{}             `json:"purchased_code"`
 }
 
 type purchaseBillResDataBody struct {
-	Status          string
-	Product_Name    string
-	Unique_Element  string
-	Unit_Price      int
-	Quantity        int
-	Channel         string
-	Type            string
-	Phone           string
-	Name            interface{}
-	Convinience_fee int
-	Amount          int
-	Platform        string
+	Status          string      `json:"status"`
+	Product_Name    string      `json:"product_name"`
+	Unique_Element  string      `json:"enique_element"`
+	Unit_Price      int         `json:"unit_price"`
+	Quantity        int         `json:"quantity"`
+	Channel         string      `json:"channel"`
+	Type            string      `json:"type"`
+	Phone           string      `json:"phone"`
+	Name            interface{} `json:"name"`
+	Convinience_fee int         `json:"convinience_fee"`
+	Amount          int         `json:"amount"`
+	Platform        string      `json:"platform"`
 }
 
 func PurchaseBill(service_Id, customer_Id, variation, amount string) (*purchaseBillRes, int, error) {

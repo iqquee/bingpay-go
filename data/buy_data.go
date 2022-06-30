@@ -11,14 +11,14 @@ import (
 )
 
 type buyData struct {
-	Phone   string
-	Plan    int
-	Network int
+	Phone   string `json:"phone"`
+	Plan    int    `json:"plan"`
+	Network int    `json:"network"`
 }
 
 type buyDataRes struct {
-	Error   bool
-	Message string
+	Error   bool   `json:"error"`
+	Message string `json:"message"`
 }
 
 func BuyData(phone string, plan, network_id int) (*buyDataRes, int, error) {

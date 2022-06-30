@@ -10,26 +10,26 @@ import (
 )
 
 type allBanksRes struct {
-	Error   bool
-	Message string
-	Data    []allBanksResDataBody
+	Error   bool                  `json:"error"`
+	Message string                `json:"message"`
+	Data    []allBanksResDataBody `json:"data"`
 }
 
 type allBanksResDataBody struct {
-	Name        string
-	Slug        string
-	Code        string
-	LongCode    string
-	Gateway     interface{}
-	PayWithBank bool
-	Active      bool
-	IsDeleted   bool
-	Country     string
-	Currency    string
-	Type        string
-	Id          int
-	CreatedAt   string
-	UpdatedAt   string
+	Name        string      `json:"name"`
+	Slug        string      `json:"slug"`
+	Code        string      `json:"code"`
+	LongCode    string      `json:"longcode"`
+	Gateway     interface{} `json:"gateway"`
+	PayWithBank bool        `json:"pay_with_bank"`
+	Active      bool        `json:"active"`
+	IsDeleted   bool        `json:"is_deleted"`
+	Country     string      `json:"country"`
+	Currency    string      `json:"currency"`
+	Type        string      `json:"type"`
+	Id          int         `json:"id"`
+	CreatedAt   string      `json:"created_at"`
+	UpdatedAt   string      `json:"updated_at"`
 }
 
 func AllBanks() (*allBanksRes, int, error) {

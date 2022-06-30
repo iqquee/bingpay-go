@@ -10,14 +10,14 @@ import (
 )
 
 type checkBalanceRes struct {
-	Error   bool
-	Message string
-	Data    checkBalanceResDataBody
+	Error   bool                    `json:"error"`
+	Message string                  `json:"message"`
+	Data    checkBalanceResDataBody `json:"data"`
 }
 
 type checkBalanceResDataBody struct {
-	Balance  string
-	Currency string
+	Balance  string `json:"balance"`
+	Currency string `json:"currency"`
 }
 
 func CheckBalance() (*checkBalanceRes, int, error) {

@@ -10,16 +10,16 @@ import (
 )
 
 type allServicesRes struct {
-	Error   bool
-	Message string
-	Data    []allServicesResDataBody
+	Error   bool                     `json:"error"`
+	Message string                   `json:"message"`
+	Data    []allServicesResDataBody `json:"data"`
 }
 
 type allServicesResDataBody struct {
-	Id          string
-	Name        string
-	Image_Url   string
-	Description string
+	Id          string `json:"id"`
+	Name        string `json:"name"`
+	Image_Url   string `json:"image_url"`
+	Description string `json:"description"`
 }
 
 func AllServices() (*allServicesRes, int, error) {

@@ -11,21 +11,21 @@ import (
 )
 
 type airtimeToCash struct {
-	Amount  int
-	Network int
-	Phone   string
+	Amount  int    `json:"amount"`
+	Network int    `json:"network"`
+	Phone   string `json:"phone"`
 }
 
 type airtimeToCashRes struct {
-	Error   bool
-	Message string
-	Data    airtimeToCashResDataBody
+	Error   bool                     `json:"error"`
+	Message string                   `json:"message"`
+	Data    airtimeToCashResDataBody `json:"data"`
 }
 
 type airtimeToCashResDataBody struct {
-	Amount    string
-	Value     int
-	Reference int
+	Amount    string `json:"amount"`
+	Value     int    `json:"value"`
+	Reference int    `json:"reference"`
 }
 
 func AirtimeToCash(amount, network_id int, phone string) (*airtimeToCashRes, int, error) {

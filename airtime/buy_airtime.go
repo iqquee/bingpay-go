@@ -11,15 +11,15 @@ import (
 )
 
 type buyAirtime struct {
-	Phone   string
-	Amount  int
-	Network int
+	Phone   string `json:"phone"`
+	Amount  int    `json:"amount"`
+	Network int    `json:"network"`
 }
 
 type buyAirtimeRes struct {
-	Error   bool
-	Message string
-	Amount  string
+	Error   bool   `json:"error"`
+	Message string `json:"message"`
+	Amount  string `json:"amount"`
 }
 
 func BuyAirtime(phone string, amount, network_id int) (*buyAirtimeRes, int, error) {

@@ -11,20 +11,20 @@ import (
 )
 
 type resloveAccount struct {
-	Bank_Code      string
-	Account_Number string
+	Bank_Code      string `json:"bank_code"`
+	Account_Number string `json:"account_number"`
 }
 
 type resloveAccountRes struct {
-	Error bool
-	Data  resloveAccountResDataBody
+	Error bool                      `json:"error"`
+	Data  resloveAccountResDataBody `json:"data"`
 }
 type resloveAccountResDataBody struct {
-	AccountName   string
-	AccountNumber string
-	BankCode      string
-	ResponseCode  string
-	Message       string
+	AccountName   string `json:"account_name"`
+	AccountNumber string `json:"account_number"`
+	BankCode      string `json:"bank_code"`
+	ResponseCode  string `json:"response_code"`
+	Message       string `json:"message"`
 }
 
 func ResolveAccount(bank_code, acct_num string) (*resloveAccountRes, int, error) {

@@ -10,15 +10,15 @@ import (
 )
 
 type allNetworksRes struct {
-	Error   bool
-	Message string
-	Data    []allNetworksResDataBody
+	Error   bool                     `json:"error"`
+	Message string                   `json:"message"`
+	Data    []allNetworksResDataBody `json:"data"`
 }
 
 type allNetworksResDataBody struct {
-	ID   string
-	Name string
-	Note string
+	ID   string `json:"id"`
+	Name string `json:"name"`
+	Note string `json:"note"`
 }
 
 func AllNetworks() (*allNetworksRes, int, error) {

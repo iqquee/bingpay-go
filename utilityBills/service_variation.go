@@ -10,23 +10,23 @@ import (
 )
 
 type serviceVariationRes struct {
-	Error   bool
-	Message string
-	Data    serviceVariationDataBody
+	Error   bool                     `json:"error"`
+	Message string                   `json:"message"`
+	Data    serviceVariationDataBody `json:"data"`
 }
 
 type serviceVariationDataBody struct {
-	ServiceName     string
-	ServiceId       string
-	Convinience_Fee string
-	Variations      []variationsDataBody
+	ServiceName     string               `json:"service_name"`
+	ServiceId       string               `json:"service_id"`
+	Convinience_Fee string               `json:"convinience_fee"`
+	Variations      []variationsDataBody `json:"variations"`
 }
 
 type variationsDataBody struct {
-	Variation_Code   string
-	Name             string
-	Variation_Amount string
-	FixedPrice       string
+	Variation_Code   string `json:"variation_code"`
+	Name             string `json:"name"`
+	Variation_Amount string `json:"variation_amount"`
+	FixedPrice       string `json:"fixed_price"`
 }
 
 func ServiceVariation(service_id int) (*serviceVariationRes, int, error) {
