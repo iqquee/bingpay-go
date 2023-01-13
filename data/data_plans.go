@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go"
+	"github.com/iqquee/bingpay-go"
 )
 
 func DataPlans(network_id int) (*allDataPlansRes, int, error) {

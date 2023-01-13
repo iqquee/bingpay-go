@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/hisyntax/bingpay-go"
+	"github.com/iqquee/bingpay-go"
 )
 
 type airtimeToCash struct {
