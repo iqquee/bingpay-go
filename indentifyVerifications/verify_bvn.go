@@ -25,20 +25,20 @@ type verifyBvnRes struct {
 
 type verifyBvnResDataBody struct {
 	Bvn          string                           `json:"bvn"`
-	FirstName    string                           `json:"first_name"`
-	LastName     string                           `json:"last_name"`
-	MiddleName   string                           `json:"middle_name"`
+	FirstName    string                           `json:"firstname"`
+	LastName     string                           `json:"lastname"`
+	MiddleName   string                           `json:"middlename"`
 	Phone        string                           `json:"phone"`
-	BirthDate    string                           `json:"birth_date"`
+	BirthDate    string                           `json:"birthdate"`
 	Gender       string                           `json:"gender"`
-	Nationality  string                           `json:"nationaliy"`
+	Nationality  string                           `json:"nationality"`
 	Photo        string                           `json:"photo"`
-	FieldMatches verifyBvnResDataBodyFieldMatches `json:"field_matches"`
+	FieldMatches verifyBvnResDataBodyFieldMatches `json:"fieldMatches"`
 }
 
 type verifyBvnResDataBodyFieldMatches struct {
-	LastName  bool `json:"last_name"`
-	FirstName bool `json:"first_name"`
+	LastName  bool `json:"lastname"`
+	FirstName bool `json:"firstname"`
 }
 
 func VerifyBvn(firstName, lastName, phone, bvn string) (*verifyBvnRes, int, error) {

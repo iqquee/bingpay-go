@@ -402,7 +402,7 @@ package main
 import (
 	"fmt"
 	bingpay "github.com/iqquee/bingpay-go"
-	"github.com/iqquee/bingpay-go/indentifyverifications"
+	"github.com/iqquee/bingpay-go/indentifyVerifications"
 )
 
 func main() {
